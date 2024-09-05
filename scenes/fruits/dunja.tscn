@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://df0s3btla5fof"]
+
+[ext_resource type="PackedScene" uid="uid://jt4dearwfucc" path="res://scenes/fruits/fruit.tscn" id="1_hqhpy"]
+
+[node name="Dunja" instance=ExtResource("1_hqhpy")]
+modulate = Color(0.943382, 0.950385, 1.16772e-06, 1)
+fruit_type = 8
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(3.5, 3.5)
+
+[node name="CollisionShape2D" parent="." index="1"]
+scale = Vector2(3.5, 3.5)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+scale = Vector2(3.5, 3.5)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu78nb3elah88"]
+
+[ext_resource type="PackedScene" uid="uid://jt4dearwfucc" path="res://scenes/fruits/fruit.tscn" id="1_axahe"]
+[ext_resource type="Texture2D" uid="uid://d2wdnpxu0gxdh" path="res://assets/jagoda.png" id="2_v6wum"]
+
+[node name="Jagoda" instance=ExtResource("1_axahe")]
+position = Vector2(80, 31)
+fruit_type = 2
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_v6wum")
