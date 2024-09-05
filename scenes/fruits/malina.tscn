@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bryk3jgr8oey4"]
+
+[ext_resource type="PackedScene" uid="uid://jt4dearwfucc" path="res://scenes/fruits/fruit.tscn" id="1_mg8af"]
+
+[node name="Malina" instance=ExtResource("1_mg8af")]
+modulate = Color(0.990066, 0.479225, 0.473363, 1)
+fruit_type = 1
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.8, 0.8)
+
+[node name="CollisionShape2D" parent="." index="1"]
+scale = Vector2(0.8, 0.8)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+scale = Vector2(0.8, 0.8)

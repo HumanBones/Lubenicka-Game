@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhu2sxsrakydx"]
+
+[ext_resource type="PackedScene" uid="uid://b0wpbihd08ufb" path="res://scenes/walls/wall.tscn" id="1_p8ryt"]
+[ext_resource type="Script" path="res://scenes/walls/walls.gd" id="1_ud1j6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hbw8"]
+size = Vector2(1000, 20)
+
+[node name="Walls" type="Node2D"]
+script = ExtResource("1_ud1j6")
+
+[node name="Wall" parent="." instance=ExtResource("1_p8ryt")]
+position = Vector2(536, 48)
+rotation = 1.5708
+scale = Vector2(1.36, 1)
+
+[node name="Wall2" parent="." instance=ExtResource("1_p8ryt")]
+position = Vector2(1310, 48)
+rotation = 1.5708
+scale = Vector2(1.36, 1)
+
+[node name="Wall3" parent="." instance=ExtResource("1_p8ryt")]
+position = Vector2(444, 1058)
+scale = Vector2(1.36, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(932, -58)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_2hbw8")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

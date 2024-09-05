@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://jt4dearwfucc"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://1oompo28wv48" path="res://assets/phy_material/basic.tres" id="1_mwboq"]
+[ext_resource type="Texture2D" uid="uid://buw16s0g7r472" path="res://assets/ball.png" id="1_o6gac"]
+[ext_resource type="Script" path="res://scenes/fruits/fruit.gd" id="1_p4f3s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4tjdn"]
+radius = 31.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hujoy"]
+radius = 33.0
+
+[node name="Fruit" type="RigidBody2D" groups=["fruits"]]
+collision_layer = 2
+collision_mask = 3
+physics_material_override = ExtResource("1_mwboq")
+angular_velocity = 0.0523599
+angular_damp = 0.5
+script = ExtResource("1_p4f3s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_o6gac")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4tjdn")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_hujoy")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

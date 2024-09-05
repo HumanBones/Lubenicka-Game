@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6lbet2ivfkh4"]
+
+[ext_resource type="Script" path="res://scenes/game/GameManager.gd" id="1_8i6jq"]
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_o8lnq"]
+[ext_resource type="PackedScene" uid="uid://ya3acvnh1gmr" path="res://scenes/dropper/dropper.tscn" id="2_bhtxo"]
+[ext_resource type="PackedScene" uid="uid://bhu2sxsrakydx" path="res://scenes/walls/walls.tscn" id="3_7qjb5"]
+[ext_resource type="PackedScene" uid="uid://fme10vivei8b" path="res://scenes/GUI/game_over.tscn" id="5_3nn4j"]
+[ext_resource type="Texture2D" uid="uid://dgh2c61legrsy" path="res://assets/borovnica.png" id="6_fk6s4"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_o8lnq")
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("1_8i6jq")
+
+[node name="Timer" type="Timer" parent="GameManager"]
+one_shot = true
+
+[node name="MultiplierTimer" type="Timer" parent="GameManager"]
+one_shot = true
+
+[node name="Dropper" parent="." instance=ExtResource("2_bhtxo")]
+position = Vector2(519, 75)
+max_speed = 900.0
+move_treshold = 30.0
+
+[node name="Walls" parent="." instance=ExtResource("3_7qjb5")]
+position = Vector2(-439, 161)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource("5_3nn4j")]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="NextFruit" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("6_fk6s4")
+
+[node name="FruitName" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreMC" type="MarginContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/ScoreMC"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Title" type="Label" parent="CanvasLayer/MarginContainer/ScoreMC/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "SCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreAmount" type="Label" parent="CanvasLayer/MarginContainer/ScoreMC/VBoxContainer"]
+custom_minimum_size = Vector2(400, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_timer_timeout"]
+[connection signal="timeout" from="GameManager/MultiplierTimer" to="GameManager" method="_on_multiplier_timer_timeout"]
+[connection signal="game_over" from="Walls" to="GameManager" method="_on_walls_game_over"]
+
+[editable path="Dropper"]
+[editable path="Walls"]
