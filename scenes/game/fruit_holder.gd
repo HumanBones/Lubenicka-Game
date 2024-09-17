@@ -28,5 +28,3 @@ var fruit_array = [
 	load("res://scenes/fruits/dinja.tscn"),
 	load("res://scenes/fruits/lubenica.tscn")
 ]
-
-
