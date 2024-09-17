@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var spawn_cooldown : float = 0.6
-@export var score_amount : float = 10.0
+@export var score_amount : float = 1.0
 @export var multip_time : float = 2.0
 
 @onready var marker_2d = $"../Dropper/Marker2D"
@@ -11,7 +11,10 @@ extends Node2D
 @onready var fruit_name = $"../CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/FruitName"
 @onready var score_amount_label = $"../CanvasLayer/MarginContainer/ScoreMC/VBoxContainer/ScoreAmount"
 @onready var multiplier_timer = $MultiplierTimer
+@onready var star_pos: Marker2D = $"../Marker2D"
 
+var dropper_scene = preload("res://scenes/dropper/dropper.tscn")
+var player
 
 var can_spawn : bool = true
 var is_game_over : bool = false
@@ -19,6 +22,7 @@ var next_fruit : int
 var next_fruit_inst
 
 func _ready():
+	spawn_player()
 	ScoreManager.score_updated.connect(update_label)
 	multiplier_timer.wait_time = multip_time
 	timer.wait_time = spawn_cooldown
@@ -88,3 +92,8 @@ func update_label(amount : float) ->void:
 
 func _on_multiplier_timer_timeout():
 	ScoreManager.reset_multiplier()
+
+
+func spawn_player() ->void:
+	player = dropper_scene.instantiate()
+	player.global_position = star_pos.global_position

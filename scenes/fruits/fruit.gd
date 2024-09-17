@@ -23,4 +23,3 @@ func _on_area_2d_area_entered(area):
 			
 func call_singal_collided(spawn_pos,fruit_type) ->void:
 	collided.emit(spawn_pos,fruit_type)
-

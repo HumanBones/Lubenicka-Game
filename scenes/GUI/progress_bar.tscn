@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcg5saswm4pft"]
+
+[ext_resource type="Script" path="res://scenes/GUI/progress_bar.gd" id="1_6gv2e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7af4e"]
+bg_color = Color(0.161179, 0.503957, 0.336738, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.770338, 0.852596, 0.32391, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_size = 2
+shadow_offset = Vector2(-3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ct0je"]
+bg_color = Color(0.266037, 0.695158, 0.463656, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="ProgressBar" type="ProgressBar"]
+offset_right = 327.0
+offset_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_7af4e")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ct0je")
+value = 50.0
+rounded = true
+show_percentage = false
+script = ExtResource("1_6gv2e")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 23.0
+offset_right = 20.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 29.0
+offset_right = 20.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.94902, 1, 0.286275, 1)
+theme_override_colors/font_shadow_color = Color(0.80687, 0.80687, 0.80687, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "COMBO X"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -12,6 +12,7 @@ var direction : float
 var mouse_pos : Vector2
 var mouse_dir_x : float = 0.0
 var is_key_mode : bool = false
+var is_game_over : bool = false
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -20,6 +21,9 @@ func _input(event):
 		
 		
 func _process(delta):
+	if is_game_over:
+		return
+		
 	direction = 0.0
 	
 	global_position.x = clamp(global_position.x,wall.global_position.x + offset_pos, wall_2.global_position.x - offset_pos)
@@ -40,3 +44,7 @@ func _process(delta):
 	move_and_slide()
 	
 
+
+
+func _on_walls_game_over():
+	is_game_over = true

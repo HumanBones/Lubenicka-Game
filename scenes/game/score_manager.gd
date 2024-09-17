@@ -2,6 +2,8 @@ extends Node
 
 signal score_updated(amount)
 signal high_score_updated(amount)
+signal multiplier_updated(amount)
+signal multiplier_reset()
 
 var score : float = 0
 var high_score : float
@@ -20,6 +22,8 @@ func update_score(amount:float) ->void:
 	
 func update_multiplier() ->void:
 	multiplier += 1
+	multiplier_updated.emit(multiplier)
 
 func reset_multiplier() ->void:
 	multiplier = 1
+	multiplier_reset.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6lbet2ivfkh4"]
+[gd_scene load_steps=8 format=3 uid="uid://c6lbet2ivfkh4"]
 
 [ext_resource type="Script" path="res://scenes/game/GameManager.gd" id="1_8i6jq"]
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_o8lnq"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bhu2sxsrakydx" path="res://scenes/walls/walls.tscn" id="3_7qjb5"]
 [ext_resource type="PackedScene" uid="uid://fme10vivei8b" path="res://scenes/GUI/game_over.tscn" id="5_3nn4j"]
 [ext_resource type="Texture2D" uid="uid://dgh2c61legrsy" path="res://assets/borovnica.png" id="6_fk6s4"]
+[ext_resource type="PackedScene" uid="uid://bcg5saswm4pft" path="res://scenes/GUI/progress_bar.tscn" id="7_rtlbv"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_o8lnq")
@@ -96,9 +97,18 @@ theme_override_font_sizes/font_size = 48
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ProgressBar" parent="CanvasLayer/MarginContainer/ScoreMC/VBoxContainer" node_paths=PackedStringArray("timer") instance=ExtResource("7_rtlbv")]
+layout_mode = 2
+value = 0.0
+timer = NodePath("../../../../../GameManager/MultiplierTimer")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(519, 75)
+
 [connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="GameManager/MultiplierTimer" to="GameManager" method="_on_multiplier_timer_timeout"]
 [connection signal="game_over" from="Walls" to="GameManager" method="_on_walls_game_over"]
+[connection signal="game_over" from="Walls" to="Dropper" method="_on_walls_game_over"]
 
 [editable path="Dropper"]
 [editable path="Walls"]
